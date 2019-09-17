@@ -3,7 +3,7 @@ Implement of some digital-image-processing functions.
 
 ## Image Warping(deform)
 ```python
-python deform.py
+python main.py
 ```
 
 ### global deforming
