@@ -7,5 +7,5 @@ python deform.py
 ```
 
 ### global deforming
-Images before and after deforming are <br>
-<img src="https://github.com/xuguodong03/Image-Processing/raw/master/images/venice.jpg" width="45%" height="45%">    <img src="https://github.com/xuguodong03/Image-Processing/raw/master/images/venice_global.jpg" width="45%" height="45%"> <br>
+Oirginal image, warped image, recovered image <br>
+<img src="https://github.com/xuguodong03/Image-Processing/raw/master/images/venice.jpg" width="45%" height="45%">    <img src="https://github.com/xuguodong03/Image-Processing/raw/master/images/venice_warp.jpg" width="45%" height="45%"> <img src="https://github.com/xuguodong03/Image-Processing/raw/master/images/venice_recover.jpg" width="45%" height="45%"> <br>

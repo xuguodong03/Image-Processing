@@ -58,7 +58,7 @@ def deform(h, w, nh, nw, degree=0.45, prob=0.5):
             grid[idx_y, idx_x, :] = tmp[:2].T
 
     offset = np.stack((offset_x, offset_y), axis=0).astype(np.float32)
-    return grid, offset[:,1:-1,1:-1]
+    return grid.astype(np.float32), offset[:,1:-1,1:-1].astype(np.float32)
 
 def recover(h, w, nh, nw, offset):
 
@@ -101,13 +101,16 @@ def recover(h, w, nh, nw, offset):
             Y = np.dot(affine, X)
             grid[y,x,:] = Y[:2].T
     
-    return grid
+    return grid.astype(np.float32)
 
 if __name__ == '__main__':
 
     img = cv2.imread('./images/venice.jpg')
     h,w = img.shape[:2]
-    grid = deform(h,w,10,10)[0]
-    warp = cv2.remap(img, grid[...,0], grid[...,1], interpolation=cv2.INTER_LINEAR)
-    cv2.imwrite('./images/venice_global.jpg', warp)
-    
+    grid, offset = deform(h,w,10,10)
+    warp_img = cv2.remap(img, grid[...,0], grid[...,1], interpolation=cv2.INTER_LINEAR)
+    grid = recover(h,w,10,10,offset)
+    recover_img = cv2.remap(warp_img, grid[...,0], grid[...,1], interpolation=cv2.INTER_LINEAR)
+
+    cv2.imwrite('./images/venice_warp.jpg', warp_img)
+    cv2.imwrite('./images/venice_recover.jpg', recover_img)    
